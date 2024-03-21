@@ -1,5 +1,5 @@
 {
-  "name": "grid-types",
+  "name": "ztypes",
   "version": "1.0.0",
   "description": "Threefold Grid types using Typescript",
   "main": "index.ts",
@@ -16,14 +16,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zaelgohary/grid-types.git"
+    "url": "git+https://github.com/zaelgohary/ztypes.git"
   },
   "author": "Zainab Elgohary",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zaelgohary/grid-types/issues"
+    "url": "https://github.com/zaelgohary/ztypes/issues"
   },
-  "homepage": "https://github.com/zaelgohary/grid-types#readme",
+  "homepage": "https://github.com/zaelgohary/ztypes#readme",
   "dependencies": {
     "@threefold/grid_client": "^2.3.5"
   },
