@@ -1,0 +1,35 @@
+{
+  "name": "grid-types",
+  "version": "1.0.0",
+  "description": "Threefold Grid types using Typescript",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "dev": "npx tsc -w",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zaelgohary/grid-types.git"
+  },
+  "author": "Zainab Elgohary",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zaelgohary/grid-types/issues"
+  },
+  "homepage": "https://github.com/zaelgohary/grid-types#readme",
+  "dependencies": {
+    "@threefold/grid_client": "^2.3.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.2",
+    "gts": "^5.2.0",
+    "typescript": "^3.9.7"
+  }
+}
