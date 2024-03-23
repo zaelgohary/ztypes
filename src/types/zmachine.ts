@@ -1,4 +1,4 @@
-import {challenge} from '../utils/grid';
+import {challenge} from '../utils/challenge';
 
 class ComputeCapacity {
   cpu!: number;
@@ -67,7 +67,11 @@ class Zmachine {
       this.network.challenge(),
       this.size?.toString(),
       this.compute_capacity.challenge(),
-      this.mounts.map(m => m.challenge).toString(),
+      this.mounts
+        .map(m => {
+          return m.challenge();
+        })
+        .toString(),
       this.entrypoint,
       this.stringifiedEnvs,
       this.gpu?.toString() || '',

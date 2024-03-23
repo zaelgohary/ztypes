@@ -1,4 +1,4 @@
-import {challenge} from '../utils/grid';
+import {challenge} from '../utils/challenge';
 
 class Peer {
   subnet!: string;

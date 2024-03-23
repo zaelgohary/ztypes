@@ -6,12 +6,4 @@ const grid = new GridClient({
   network: config.network as NetworkEnv,
 });
 
-export function challenge(challenge: string[]): string {
-  let out = '';
-  for (const c in challenge) {
-    out += c;
-  }
-  return out;
-}
-
 export {grid};
