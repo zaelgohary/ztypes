@@ -9,10 +9,7 @@
     "clean": "gts clean",
     "compile": "tsc",
     "fix": "gts fix",
-    "dev": "npx tsc -w",
-    "prepare": "npm run compile",
-    "pretest": "npm run compile",
-    "posttest": "npm run lint"
+    "dev": "npx tsc -w"
   },
   "repository": {
     "type": "git",

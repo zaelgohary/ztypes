@@ -1,11 +1,11 @@
-import {challenge} from '../utils/challenge';
+import {format} from '../utils/format';
 
 class ComputeCapacity {
   cpu!: number;
   memory!: number;
 
   challenge(): string {
-    return challenge([this.cpu.toString(), this.memory.toString()]);
+    return format([this.cpu.toString(), this.memory.toString()]);
   }
 }
 class ZNetworkInterface {
@@ -24,7 +24,7 @@ class ZmachineNetwork {
   mycelium?: MyceliumIP;
 
   challenge(): string {
-    return challenge([
+    return format([
       this.public_ip,
       this.planetary.toString(),
       this.interfaces
@@ -41,7 +41,7 @@ class Mount {
   mountpoint!: string;
 
   challenge(): string {
-    return challenge([this.name, this.mountpoint]);
+    return format([this.name, this.mountpoint]);
   }
 }
 class Zmachine {
@@ -56,7 +56,7 @@ class Zmachine {
   gpu?: string[];
 
   challenge(): string {
-    return challenge([
+    return format([
       this.flist,
       this.network.challenge(),
       this.size?.toString(),

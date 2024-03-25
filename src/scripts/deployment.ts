@@ -18,7 +18,7 @@ import {Znet} from '../types/znet';
 import * as config from '../config.json';
 
 const zmount = new Zmount();
-zmount.size = 1000000000;
+zmount.size = 10000000000;
 
 const disk = new Workload();
 disk.version = 0;

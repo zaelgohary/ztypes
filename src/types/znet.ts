@@ -1,4 +1,4 @@
-import {challenge} from '../utils/challenge';
+import {format} from '../utils/format';
 
 class Peer {
   subnet!: string;
@@ -7,7 +7,7 @@ class Peer {
   endpoint!: string;
 
   challenge(): string {
-    return challenge([
+    return format([
       this.wireguard_public_key,
       this.endpoint,
       this.subnet,
@@ -29,7 +29,7 @@ class Znet {
   mycelium?: Mycelium;
 
   challenge(): string {
-    return challenge([
+    return format([
       this.ip_range,
       this.subnet,
       this.wireguard_private_key || '',

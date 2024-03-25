@@ -2,7 +2,7 @@
 
 This repository contains TypeScript definitions for Threefold Grid types. These types are essential for creating successful deployments on the Threefold Grid.
 
-## Install node modules
+## Installation
 
 Before running the deployment script, make sure you have Node.js and npm installed on your system. Then, follow these steps to install the necessary node modules:
 
@@ -25,4 +25,4 @@ To execute the deployment script and create a deployment on the Threefold Grid, 
 ts-node src/scripts/deployment.ts
 ```
 
-This command will run the TypeScript script and initiate the deployment process.
+This command will run the deployment script and initiate the deployment process.
