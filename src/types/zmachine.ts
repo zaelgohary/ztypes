@@ -55,25 +55,19 @@ class Zmachine {
   corex?: boolean;
   gpu?: string[];
 
-  stringifiedEnvs = this.env
-    ? Object.entries(this.env)
-        .map(([key, value]) => `${key}=${value}`)
-        .join('')
-    : '';
-
   challenge(): string {
     return challenge([
       this.flist,
       this.network.challenge(),
       this.size?.toString(),
       this.compute_capacity.challenge(),
-      this.mounts
-        .map(m => {
-          return m.challenge();
-        })
-        .toString(),
+      this.mounts.map(m => m.challenge()).join(','),
       this.entrypoint,
-      this.stringifiedEnvs,
+      this.env
+        ? Object.entries(this.env)
+            .map(([key, value]) => `${key}=${value}`)
+            .join('')
+        : '',
       this.gpu?.toString() || '',
     ]);
   }

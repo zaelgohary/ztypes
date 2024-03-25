@@ -20,8 +20,6 @@ import * as config from '../config.json';
 const zmount = new Zmount();
 zmount.size = 1000000000;
 
-console.log('zmount: ', zmount);
-
 const disk = new Workload();
 disk.version = 0;
 disk.name = 'zdisk';
@@ -30,16 +28,12 @@ disk.metadata = '';
 disk.type = WorkloadTypes.zmount;
 disk.data = zmount;
 
-console.log('disk: ', disk);
-
 const znet = new Znet();
 znet.subnet = '10.20.2.0/24';
 znet.ip_range = '10.20.0.0/16';
 znet.wireguard_private_key = '4nQJ3uZetD1wBztUIAFLbybqKqGxpmYjYoIgjqe3PXY=';
 znet.wireguard_listen_port = 20520;
 znet.peers = [];
-
-console.log('znet: ', znet);
 
 const network = new Workload();
 network.version = 0;
@@ -49,13 +43,11 @@ network.description = '';
 network.data = znet;
 network.metadata = JSON.stringify({version: 3, user_accesses: []});
 
-console.log('network: ', network);
-
 const vmNetwork = new ZmachineNetwork();
 vmNetwork.planetary = true;
 vmNetwork.interfaces = [
   {
-    network: 'znetwork',
+    network: network.name,
     ip: '10.20.2.2',
   },
 ];
@@ -105,13 +97,12 @@ deployment.twin_id = config.twin_id;
 deployment.metadata = '';
 deployment.description = '';
 deployment.expiration = 0;
-deployment.workloads = [vm, disk, network];
+deployment.workloads = [disk, network, vm];
 deployment.signature_requirement = signature_requirement;
 
 (async function () {
   await grid.connect();
   const hash = deployment.challenge_hash();
-  console.log('hash: ', hash);
 
   const contract = await (
     await grid.tfclient.contracts.createNode({
@@ -122,18 +113,17 @@ deployment.signature_requirement = signature_requirement;
       data: JSON.stringify({
         version: 3,
         type: 'vm',
-        name: 'zeevm',
-        projectName: 'vm/zeevm',
+        name: `${vm.name}`,
+        projectName: `vm/${vm.name}`,
       }),
     })
   ).apply();
 
-  console.log('contract in log: ', contract);
-
   deployment.contract_id = contract.contractId;
-  deployment.sign(config.twin_id, config.mnemonic, KeypairType.sr25519, hash);
+  deployment.sign(config.twin_id, config.mnemonic, KeypairType.sr25519);
 
-  console.log('deployment: ', deployment);
+  await grid.tfclient.connect();
+  await grid.rmbClient.connect();
 
   const deployMsgId = await grid.rmbClient.send(
     'zos.deployment.deploy',
@@ -142,22 +132,19 @@ deployment.signature_requirement = signature_requirement;
     1,
     3
   );
-  console.log('deployMsgId: ', deployMsgId);
-  console.log('RMB client: ', grid.rmbClient);
-  const deployReply = await grid.rmbClient.read(deployMsgId);
-  console.log('deployedReply: ', deployReply);
+
+  await grid.rmbClient.read(deployMsgId);
 
   setTimeout(async () => {}, 10000);
 
   const msg = await grid.rmbClient.send(
     'zos.deployment.get',
-    JSON.stringify(contract.contractId),
+    JSON.stringify({contract_id: deployment.contract_id}),
     21,
     1,
     3
   );
 
-  console.log('msg: ', msg);
   const msgReply = await grid.rmbClient.read(msg);
   console.log('msgReply: ', msgReply);
 
