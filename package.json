@@ -5,10 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "gts lint",
-    "clean": "gts clean",
     "compile": "tsc",
-    "fix": "gts fix",
     "dev": "npx tsc -w"
   },
   "repository": {
@@ -26,7 +23,6 @@
   },
   "devDependencies": {
     "@types/node": "^20.8.2",
-    "gts": "^5.2.0",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.10"
   }
 }

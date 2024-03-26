@@ -1,4 +1,4 @@
-import {format} from '../utils/format';
+import { format } from '../utils/format';
 
 class ComputeCapacity {
   cpu!: number;
@@ -65,12 +65,12 @@ class Zmachine {
       this.entrypoint,
       this.env
         ? Object.entries(this.env)
-            .map(([key, value]) => `${key}=${value}`)
-            .join('')
+          .map(([key, value]) => `${key}=${value}`)
+          .join('')
         : '',
       this.gpu?.toString() || '',
     ]);
   }
 }
 
-export {Zmachine, ZmachineNetwork, Mount, ComputeCapacity};
+export { Zmachine, ZmachineNetwork, Mount, ComputeCapacity };

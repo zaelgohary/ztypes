@@ -1,4 +1,4 @@
-import {format} from '../utils/format';
+import { format } from '../utils/format';
 
 class Peer {
   subnet!: string;
@@ -41,4 +41,4 @@ class Znet {
   }
 }
 
-export {Znet};
+export { Znet };

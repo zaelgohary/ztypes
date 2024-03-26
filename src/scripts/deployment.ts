@@ -6,15 +6,15 @@ import {
   Workload,
   WorkloadTypes,
 } from '@threefold/grid_client';
-import {Zmount} from '../types/zmount';
-import {grid} from '../utils/grid';
+import { Zmount } from '../types/zmount';
+import { grid } from '../utils/grid';
 import {
   ComputeCapacity,
   Mount,
   Zmachine,
   ZmachineNetwork,
 } from '../types/zmachine';
-import {Znet} from '../types/znet';
+import { Znet } from '../types/znet';
 import * as config from '../config.json';
 
 const zmount = new Zmount();
@@ -41,7 +41,7 @@ network.type = WorkloadTypes.network;
 network.name = 'znetwork';
 network.description = '';
 network.data = znet;
-network.metadata = JSON.stringify({version: 3, user_accesses: []});
+network.metadata = JSON.stringify({ version: 3, user_accesses: [] });
 
 const vmNetwork = new ZmachineNetwork();
 vmNetwork.planetary = true;
@@ -135,11 +135,11 @@ deployment.signature_requirement = signature_requirement;
 
   await grid.rmbClient.read(deployMsgId);
 
-  setTimeout(async () => {}, 10000);
+  setTimeout(async () => { }, 10000);
 
   const msg = await grid.rmbClient.send(
     'zos.deployment.get',
-    JSON.stringify({contract_id: deployment.contract_id}),
+    JSON.stringify({ contract_id: deployment.contract_id }),
     21,
     1,
     3
